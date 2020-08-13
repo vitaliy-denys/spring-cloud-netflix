@@ -1,0 +1,24 @@
+server:
+  port: 8081
+
+spring:
+  application:
+    name: gallery-service
+  data:
+    mongodb:
+      host: 127.0.0.1
+      port: 27017
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8080/eureka/
+  instance:
+    preferIpAddress: true
+
+logging:
+  pattern:
+    console: "%black(%d{ISO8601}) %highlight(%-5level) [%blue(%t)] %yellow(%C{1.}): %msg%n%throwable"
+  level:
+    org.springframework.web: INFO
+    com.galleryservice: DEBUG
