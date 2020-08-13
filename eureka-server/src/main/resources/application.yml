@@ -1,0 +1,22 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: eureka-server
+
+eureka:
+  client:
+    register-with-eureka: false # Indicates whether or not this instance should register its information with eureka server for discovery by others.
+    fetch-registry: false # Indicates whether this client should fetch eureka registry information from eureka server.
+    instance-info-replication-interval-seconds: 20 # Indicates how long initially (in seconds) to replicate instance info to the eureka server
+  server:
+    eviction-interval-timer-in-ms: 50000 # Tells the Eureka server to run a job at this frequency to evict the expired clients
+    wait-time-in-ms-when-sync-empty: 5
+
+logging:
+  pattern:
+    console: "%black(%d{ISO8601}) %highlight(%-5level) [%blue(%t)] %yellow(%C{1.}): %msg%n%throwable"
+  level:
+    org.springframework.web: INFO
+    com.eurekaserver: DEBUG
