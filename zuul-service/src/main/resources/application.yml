@@ -1,0 +1,37 @@
+server:
+  port: 8083
+
+spring:
+  application:
+    name: zuul-service
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8080/eureka/
+  instance:
+    preferIpAddress: true
+
+zuul:
+  routes:
+    auth-service:
+      sensitive-headers: Cookie,Set-Cookie
+      path: /auth/**
+      service-id: security-service
+      strip-prefix: false
+    gallery-service:
+      path: /bucket/**
+      service-id: gallery-service
+      strip-prefix: false
+    user-service:
+      path: /user/**
+      service-id: user-service
+      strip-prefix: false
+  ignored-services: '*'
+
+logging:
+  pattern:
+    console: "%black(%d{ISO8601}) %highlight(%-5level) [%blue(%t)] %yellow(%C{1.}): %msg%n%throwable"
+  level:
+    org.springframework.web: INFO
+    com.galleryservice: DEBUG
